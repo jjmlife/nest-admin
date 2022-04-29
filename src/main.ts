@@ -30,6 +30,7 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new HttpExceptionFilter(), new AllExceptionFilter());
+  /// 全局验证
   app.useGlobalPipes(
     new ValidationPipe({
       // fix parameter escape
