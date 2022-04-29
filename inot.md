@@ -28,6 +28,12 @@ passport-local
 crypto-js
 ```
 
+```
+使用依赖注入：
+local
+jwt - 全局
+```
+
 3. swagger
 
 - 文档
@@ -68,6 +74,10 @@ class-validator
 ```
 class-transformer
 ```
+
+8. bcrypt
+
+- 加密， 随机生成 salt
 
 # typeorm
 

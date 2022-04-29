@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -7,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseModel } from 'src/lib/base/base.entity';
+import * as bcrypt from 'bcrypt';
 
 // @Entity('sys_user')
 @Entity()
@@ -52,4 +53,10 @@ export class User {
     comment: '0 - soft delete , 1-',
   })
   isDelete: number;
+
+  @BeforeInsert()
+  private async hashPassword() {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+  }
 }

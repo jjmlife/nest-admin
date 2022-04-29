@@ -10,11 +10,13 @@ export class TransformInterceptor<T>
 {
   intercept(context: ExecutionContext, next: CallHandler<T>) {
     return next.handle().pipe(
-      map((data) => ({
-        error_code: 0,
-        message: 'OK',
-        data,
-      })),
+      map((data) => {
+        return {
+          retcode: 0,
+          message: 'OK',
+          data,
+        };
+      }),
     );
   }
 }

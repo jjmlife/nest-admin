@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from '../constants';
 
 @Injectable()
-export class JwtStrategyUser extends PassportStrategy(Strategy, 'userjwt') {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -14,31 +14,14 @@ export class JwtStrategyUser extends PassportStrategy(Strategy, 'userjwt') {
   }
 
   async validate(payload: any) {
-    console.log('payload', payload);
-    const {
-      userId,
-      username,
-      status,
-      roles,
-      department,
-      phone,
-      avatar,
-      departmentName,
-      departmentId,
-      areaId,
-    } = payload;
+    // console.log('jjm payload', payload);
+    const { id, email, username, roles } = payload;
 
     return {
-      userId,
+      id,
+      email,
       username,
-      status,
       roles,
-      department,
-      phone,
-      avatar,
-      departmentName,
-      departmentId,
-      areaId,
     };
   }
 }

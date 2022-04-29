@@ -9,6 +9,7 @@ import loadConfig from './config/config';
 import { User } from './lib/user/entity/user.entity';
 import { UserModule } from './lib/user/user.module';
 import { MomentModule } from './lib/moment/moment.module';
+import { AuthModule } from './lib/auth/auth.module';
 
 const configModule = ConfigModule.forRoot({
   load: [loadConfig],
@@ -37,7 +38,7 @@ const typeormModule = TypeOrmModule.forRootAsync({
 });
 
 @Module({
-  imports: [configModule, typeormModule, UserModule, MomentModule],
+  imports: [configModule, typeormModule, AuthModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })

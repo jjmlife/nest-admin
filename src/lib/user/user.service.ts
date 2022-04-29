@@ -15,8 +15,21 @@ export class UserService {
   async create(userDto: CreateUserDto) {
     const { username, password, email } = userDto;
 
+    /// 判断数据存在
+    const isExist = await this.userRepo.count({
+      where: { username },
+    });
+
+    console.log(isExist);
+    if (isExist > 0) {
+      return {
+        error_code: 1000,
+        msg: '用户已存在',
+      };
+    }
+
     const user = new User();
-    user.username = username;
+    user.username = username; /// 加密
     user.password = password;
     user.email = email;
 
