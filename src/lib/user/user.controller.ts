@@ -29,7 +29,7 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Post('create')
   async create(@Req() req, @Body() userDto: CreateUserDto) {
-    // console.log('create ', req.user, userDto);
+    console.log('create ', req.user, userDto);
     return await this.userService.create(userDto);
   }
 

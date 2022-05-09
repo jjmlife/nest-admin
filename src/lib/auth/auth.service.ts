@@ -19,9 +19,7 @@ export class AuthService {
     if (!user) {
       return null;
     }
-    // console.log('jjm ', user.password, password);
 
-    // const isMatch = user.password === password;
     const isMatch = bcrypt.compare(password, user.password);
     if (!isMatch) {
       return null;

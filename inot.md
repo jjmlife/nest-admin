@@ -79,6 +79,13 @@ class-transformer
 
 - 加密， 随机生成 salt
 
+9. websocket
+
+- websocket.io
+- @nest/websocket
+- @nestjs/platform-socket.io
+- @nestjs/schedule: 定时器
+
 # typeorm
 
 - https://zhuanlan.zhihu.com/p/448326823

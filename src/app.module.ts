@@ -10,6 +10,7 @@ import { User } from './lib/user/entity/user.entity';
 import { UserModule } from './lib/user/user.module';
 import { MomentModule } from './lib/moment/moment.module';
 import { AuthModule } from './lib/auth/auth.module';
+import { ChatModule } from './lib/chat/chat.module';
 
 const configModule = ConfigModule.forRoot({
   load: [loadConfig],
@@ -38,7 +39,7 @@ const typeormModule = TypeOrmModule.forRootAsync({
 });
 
 @Module({
-  imports: [configModule, typeormModule, AuthModule, UserModule],
+  imports: [configModule, typeormModule, AuthModule, UserModule, ChatModule],
   controllers: [AppController],
   providers: [AppService],
 })

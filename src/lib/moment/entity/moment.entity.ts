@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Label } from 'src/lib/label/entity/label.entity';
 import { User } from 'src/lib/user/entity/user.entity';
 
 import {
@@ -6,6 +7,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -22,7 +24,7 @@ export class Moment {
   @Column({ length: 1000 })
   content: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne((type) => User, (user) => user.moments)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
@@ -33,4 +35,7 @@ export class Moment {
   @ApiProperty({ description: 'update_time' })
   @UpdateDateColumn({ type: 'timestamp', name: 'update_time' })
   updateTime: Date;
+
+  @ManyToMany((type) => Label, (label) => label.moments)
+  labels: Label[];
 }

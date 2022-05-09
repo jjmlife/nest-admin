@@ -4,11 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
+import { Moment } from 'src/lib/moment/entity/moment.entity';
 
 // @Entity('sys_user')
 @Entity()
@@ -53,6 +55,9 @@ export class User {
     comment: '0 - soft delete , 1-',
   })
   isDelete: number;
+
+  @OneToMany((type) => Moment, (moment) => moment.user)
+  moments: Moment[];
 
   @BeforeInsert()
   private async hashPassword() {
